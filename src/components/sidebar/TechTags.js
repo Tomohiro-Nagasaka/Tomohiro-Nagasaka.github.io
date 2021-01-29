@@ -1,6 +1,7 @@
 import React from "react"
 
-import TechTag from "../tags/TechTag"
+import {getTechTags0, TechTag} from "../tags/TechTag"
+
 
 const TechTags = (props) => {
     const labels = props.labels
@@ -20,20 +21,34 @@ const TechTags = (props) => {
         return label[1] > 0
     })
 
-    const tags = categories.map(category => {
+    const techtags = categories.map(category => {
         return category[0]
     })
 
+    let posttags = []
+    posts.forEach(post => {
+        post.node.frontmatter.tags.forEach(tag => {
+            if (!posttags.includes(tag)) {
+                posttags.push(tag)
+            }
+        })
+    })
 
+    const getOtherTags = (tags) => {
+        const techTags = []
+        tags.forEach((tag, i) => {
+
+            if (!techtags.includes(tag)) {
+                techTags.push(getTechTags0(tag, labels, i))
+            }
+        })
+        return techTags
+    }
 
     const getTechTags = (tags) => {
         const techTags = []
         tags.forEach((tag, i) => {
-            labels.forEach((label) => {
-                if (tag === label.tag) {
-                    techTags.push(<TechTag key={i} tag={label.tag} tech={label.tech} name={label.name} size={label.size} color={label.color} />)
-                }
-            })
+            techTags.push(getTechTags0(tag, labels, i))
         })
         return techTags
     }
@@ -41,10 +56,17 @@ const TechTags = (props) => {
 
     return (
         <>
-            <h4>Tech Topics</h4>
+            <h4>Topics</h4>
             <div className="d-block">
-                {getTechTags(tags)}
+                {getOtherTags(posttags)}
             </div>
+            <br></br>
+            <h4>Language</h4>
+            <div className="d-block">
+                {getTechTags(techtags)}
+            </div>
+            
+            
         </>
     )
 }

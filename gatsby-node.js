@@ -5,7 +5,31 @@ const _ = require("lodash")
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode, basePath: `pages` })
+    let { tags = '' } = node.frontmatter;
+    
+    console.log("XXXX");
+
+    if (tags === null || tags === '') {
+      tags = [];
+    }
+    let filepath = createFilePath({ node, getNode, basePath: `contents` });
+    let temp = filepath.split('/');
+    if (temp.length >= 3) {
+      let tag = temp[temp.length - 3];
+      if(tag != "" && tag != null)
+      {
+        tags.unshift(tag)
+      }
+    }
+    
+    node.frontmatter.tags = tags;
+    console.log(tags);
+
+    
+
+    const slug = filepath;
+    console.log(slug);
+
     createNodeField({
       node,
       name: `slug`,

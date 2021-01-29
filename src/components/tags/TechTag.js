@@ -3,7 +3,7 @@ import React from "react"
 import "./tags.css"
 import { Link } from "gatsby";
 
-const TechTag = (props) => {
+export const TechTag = (props) => {
     const { tag, tech, name, size, color } = props
 
     return (
@@ -23,6 +23,31 @@ const TechTag = (props) => {
         </div>
 
     )
+}
+
+
+export const getTechTags0 = (tag, labels, i) => {
+    
+    let labelx = null;
+    labels.forEach((label) => {
+        
+        if (tag === label.tag) {
+
+            labelx = label;            
+        }
+    })
+
+    if(labelx == null)
+    {
+        console.log(tag)
+        labelx = labels[0]
+        return <TechTag key={i} tag={tag} tech={tag} name={labelx.name} size={labelx.size} color={labelx.color} />
+    }
+    else{
+        return <TechTag key={i} tag={labelx.tag} tech={labelx.tech} name={labelx.name} size={labelx.size} color={labelx.color} />
+    }
+
+    
 }
 
 export default TechTag

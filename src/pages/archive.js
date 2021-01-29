@@ -6,23 +6,19 @@ import "./index.css"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Sidebar from "../components/sidebar/Sidebar"
-import TechTag from "../components/tags/TechTag"
+import {getTechTags0, TechTag} from "../components/tags/TechTag"
 
 const ArchivePage = ({ data }) => {
     const posts = data.allMarkdownRemark.edges
     const labels = data.site.siteMetadata.labels
 
     const getTechTags = (tags) => {
-        const techTags = []
-        tags.forEach((tag, i) => {
-            labels.forEach((label) => {
-                if (tag === label.tag) {
-                    techTags.push(<TechTag key={i} tag={label.tag} tech={label.tech} name={label.name} size={label.size} color={label.color} />)
-                }
-            })
-        })
-        return techTags
-    }
+      const techTags = []
+      tags.forEach((tag, i) => {
+          techTags.push(getTechTags0(tag, labels, i))
+      })
+      return techTags
+  }
 
 
     return (
