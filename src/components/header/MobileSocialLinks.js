@@ -24,7 +24,7 @@ const MobileSocialLinks = ({ contacts }) => {
                     <FaGithubSquare size={26} style={{ color: "light" }} />
                 </span>
             </a>
-            <a className="text-warning"
+            {/* <a className="text-warning"
                 href={contacts.stackoverflow}>
                 <span title="Stack Overflow">
                     <FaStackOverflow size={26} style={{ color: "warning" }} />
@@ -41,7 +41,7 @@ const MobileSocialLinks = ({ contacts }) => {
                 <span title="Twitter">
                     <FaTwitterSquare size={26} style={{ color: "info" }} />
                 </span>
-            </a>
+            </a> */}
         </div>
     )
 }

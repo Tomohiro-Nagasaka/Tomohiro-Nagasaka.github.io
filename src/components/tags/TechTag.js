@@ -12,7 +12,7 @@ export const TechTag = (props) => {
                 <button
                     className="tech-tag text-white">
                     <p className="d-inline">{tech} </p>
-                    <div className="d-inline" style={{ fontSize: size, color: color }}><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width={size} height={size} style={{fill: `${color}`}}>
+                    <div className="d-inline" style={{ fontSize: size, color: color }}><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width={size * 1.5} height={size * 1.5} style={{fill: `${color}`}}>
                             <title>{tech}</title>
                             <path
                                 d={name} />
@@ -39,7 +39,7 @@ export const getTechTags0 = (tag, labels, i) => {
 
     if(labelx == null)
     {
-        console.log(tag)
+        //console.log(tag)
         labelx = labels[0]
         return <TechTag key={i} tag={tag} tech={tag} name={labelx.name} size={labelx.size} color={labelx.color} />
     }

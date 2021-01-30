@@ -7,7 +7,7 @@ import "../pages/index.css"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Sidebar from "../components/sidebar/Sidebar"
-import {getTechTags0, TechTag} from "../components/tags/TechTag"
+import {getTechTags0} from "../components/tags/TechTag"
 
 const Tag = ({ pageContext, data }) => {
     const posts = data.allMarkdownRemark.edges
@@ -29,7 +29,7 @@ const Tag = ({ pageContext, data }) => {
 
     return (
         <Layout>
-            <SEO title="Home" keywords={[`gatsby`, `javascript`, `react`, `web development`, `node.js`, `graphql`]} />
+            <SEO title="Home" keywords={data.site.siteMetadata.seokeywords} />
             <div className="index-main">
                 <div className="sidebar px-4 py-2">
                     <Sidebar />

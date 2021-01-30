@@ -6,7 +6,7 @@ import "./index.css"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Sidebar from "../components/sidebar/Sidebar"
-import {getTechTags0, TechTag} from "../components/tags/TechTag"
+import {getTechTags0} from "../components/tags/TechTag"
 
 const ArchivePage = ({ data }) => {
     const posts = data.allMarkdownRemark.edges
@@ -23,7 +23,7 @@ const ArchivePage = ({ data }) => {
 
     return (
         <Layout>
-            <SEO title="Archive" keywords={[`gatsby`, `javascript`, `react`, `web development`, `blog`, `graphql`]} />
+            <SEO title="Archive" keywords={data.site.siteMetadata.seokeywords} />
             <div className="index-main">
                 <div className="sidebar px-4 py-2">
                     <Sidebar />

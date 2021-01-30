@@ -1,6 +1,6 @@
 import React from "react"
 
-import {getTechTags0, TechTag} from "../tags/TechTag"
+import {getTechTags0} from "../tags/TechTag"
 
 
 const TechTags = (props) => {
@@ -56,12 +56,12 @@ const TechTags = (props) => {
 
     return (
         <>
-            <h4>Topics</h4>
+            <h4>Topics/Language</h4>
             <div className="d-block">
                 {getOtherTags(posttags)}
             </div>
             <br></br>
-            <h4>Language</h4>
+            <h4>Programming/Technology</h4>
             <div className="d-block">
                 {getTechTags(techtags)}
             </div>

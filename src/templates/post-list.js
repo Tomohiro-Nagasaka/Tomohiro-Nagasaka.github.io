@@ -6,7 +6,7 @@ import "../pages/index.css"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Sidebar from "../components/sidebar/Sidebar"
-import {getTechTags0, TechTag} from "../components/tags/TechTag"
+import {getTechTags0} from "../components/tags/TechTag"
 
 const PostList = (props) => {
     const posts = props.data.allMarkdownRemark.edges
@@ -28,7 +28,7 @@ const PostList = (props) => {
 
     return (
         <Layout>
-            <SEO title="Home" keywords={[`gatsby`, `javascript`, `react`, `web development`, `blog`, `graphql`]} />
+            <SEO title="Home" keywords={props.data.site.siteMetadata.seokeywords} />
             <div className="index-main">
                 <div className="sidebar px-4 py-2">
                     <Sidebar />

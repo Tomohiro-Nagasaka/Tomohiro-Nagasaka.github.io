@@ -17,6 +17,7 @@ module.exports = {
       twitter: siteConfig.author.contacts.twitter,
     },
     labels: siteConfig.labels,
+    seokeywords: siteConfig.seokeywords,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -27,6 +28,7 @@ module.exports = {
       options: {
         path: `${__dirname}/contents`,
         name: `blog`,
+        ignore: [`**/contents/temp/**`], // ignore files in temp
       },
     },
     {

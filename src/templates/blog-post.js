@@ -5,7 +5,7 @@ import SEO from "../components/seo"
 import "./blog-post.css"
 
 import Sidebar from "../components/sidebar/Sidebar"
-import {getTechTags0, TechTag} from "../components/tags/TechTag"
+import {getTechTags0} from "../components/tags/TechTag"
 import CustomShareBlock from "../components/CustomShareBlock"
 
 const BlogPost = (props) => {
