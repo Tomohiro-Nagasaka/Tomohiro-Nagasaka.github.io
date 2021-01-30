@@ -12,7 +12,8 @@ collections:
     create: true
     fields:
       - { name: tags, label: Tags, widget: list, required: false }
-      - { name: published, label: Published, widget: boolean }
+      - { name: published, label: Published, widget: boolean, required: false }
+      - { name: draft, label: Draft, widget: boolean, required: false }
       - { name: date, label: Date, widget: datetime }
       - { name: title, label: Title }
       - { name: body, label: Body, widget: markdown }
