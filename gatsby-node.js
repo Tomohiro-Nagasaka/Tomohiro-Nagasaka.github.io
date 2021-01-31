@@ -1,6 +1,24 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const _ = require("lodash")
+//const { MyReplace } = require("./translate")
+//const translate = require(`./translate`)
+
+const TagDict = {
+  "Chinese": "中文",
+  "Japanese":  "日本語",
+  "Reinforcement Learning":  "强化学习",
+  "Sound Processing":  "音声処理",
+  "Text Analysis":  "文章解析",
+  "":  "",
+}
+const MyReplace = ( tag ) => {
+  console.log(tag);
+  var newtag = TagDict[tag]
+  if(newtag !== undefined)
+      return newtag
+  return tag;
+}
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
@@ -22,14 +40,20 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     }
     let filepath = createFilePath({ node, getNode, basePath: `contents` });
     filepath = filepath.replace(/\\/g, '/')
+    filepath = filepath.replace(/_/g, '/')
     let temp = filepath.split('/');
     for (let index = 3; index < temp.length; index++) {
-      const tag = temp[index - 2];
-      if(tag != "" && tag != null)
+      let tag = temp[index - 2];
+      if(tag !== "" && tag !== null && tag !== undefined)
       {
         tags.unshift(tag)
       }      
     }
+
+    for (let index = 0; index < tags.length; index++) {
+      tags[index] = MyReplace(tags[index])
+    }
+    tags = [...new Set(tags)];
     
     node.frontmatter.tags = tags;
     console.log(filepath);

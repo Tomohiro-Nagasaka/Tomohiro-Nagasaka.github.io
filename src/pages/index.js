@@ -71,6 +71,8 @@ const IndexPage = ({ data }) => {
   )
 }
 
+
+//filter: { frontmatter: { published: { eq: true } } }
 export const pageQuery = graphql`
          query IndexQuery {
            site {
@@ -87,9 +89,10 @@ export const pageQuery = graphql`
              }
            }
            allMarkdownRemark(
-             limit: 3
+             limit: 10
              sort: { fields: [frontmatter___date], order: DESC }
-             filter: { frontmatter: { published: { eq: true } } }
+             filter: { frontmatter: { tags: { in: "Featured" } } }
+             
            ) {
              totalCount
              edges {
