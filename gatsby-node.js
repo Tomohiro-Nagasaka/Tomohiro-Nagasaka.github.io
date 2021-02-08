@@ -9,7 +9,7 @@ const TagDict = {
   "Japanese":  "日本語",
   "Reinforcement Learning":  "强化学习",
   "Sound Processing":  "音声処理",
-  "Text Analysis":  "文章解析",
+  "Text Analysis":  "言語解析",
   "":  "",
 }
 const MyReplace = ( tag ) => {
@@ -60,6 +60,8 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     console.log(temp);
     console.log(tags);
 
+    if(tags.includes("Personal"))
+      node.frontmatter.published = false;
     
 
     const slug = filepath;
@@ -82,6 +84,7 @@ exports.createPages = ({ graphql, actions }) => {
           node {
             frontmatter {
               tags
+              slug
             }
             fields {
               slug
@@ -94,6 +97,32 @@ exports.createPages = ({ graphql, actions }) => {
 
         const posts = result.data.allMarkdownRemark.edges
         posts.forEach(({ node }) => {
+
+          let slug = node.frontmatter.slug
+          if(slug === null || slug === undefined || slug === "")
+          {
+            slug = node.fields.slug
+          }
+          else{
+              if(slug[0] != "/")
+                slug = "/" + slug
+              if(slug[slug.length - 1]!= "/")
+                slug = slug + "/"
+          }
+          console.log(slug)
+
+          if (slug != node.fields.slug) {
+            createPage({
+              path: slug,
+              component: path.resolve(`./src/templates/blog-post.js`),
+              context: {
+                // Data passed to context is available
+                // in page queries as GraphQL variables.
+                slug: node.fields.slug,
+              },
+            })
+          }
+
           createPage({
             path: node.fields.slug,
             component: path.resolve(`./src/templates/blog-post.js`),
@@ -134,7 +163,8 @@ exports.createPages = ({ graphql, actions }) => {
 
         Array.from({ length: numPages }).forEach((_, i) => {
           createPage({
-            path: i === 0 ? `/` : `/${i+1}`,
+            //path: i === 0 ? `/` : `/${i+1}`,
+            path: `/${i+1}`,
             component: path.resolve("./src/templates/post-list.js"),
             context: {
               limit: postsPerPage,

@@ -41,7 +41,11 @@ export const getTechTags0 = (tag, labels, i) => {
     {
         //console.log(tag)
         labelx = labels[0]
-        return <TechTag key={i} tag={tag} tech={tag} name={labelx.name} size={labelx.size} color={labelx.color} />
+        var color = labelx.color
+        if(tag == "Featured")
+            color = "#D62900"
+
+        return <TechTag key={i} tag={tag} tech={tag} name={labelx.name} size={labelx.size} color={color} />
     }
     else{
         return <TechTag key={i} tag={labelx.tag} tech={labelx.tech} name={labelx.name} size={labelx.size} color={labelx.color} />

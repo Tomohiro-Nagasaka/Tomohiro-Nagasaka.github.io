@@ -11,7 +11,7 @@ import {getTechTags0} from "../components/tags/TechTag"
 const IndexPage = ({ data }) => {
   const posts = data.allMarkdownRemark.edges
   const labels = data.site.siteMetadata.labels
-  const currentPage = 1
+  const currentPage = 0
   const postsPerPage = 3 // see limit in graphql query below
   const nextPage = "/" + (currentPage + 1).toString()
   const hasNextPage = data.allMarkdownRemark.totalCount > postsPerPage
@@ -89,7 +89,7 @@ export const pageQuery = graphql`
              }
            }
            allMarkdownRemark(
-             limit: 10
+             limit: 9999
              sort: { fields: [frontmatter___date], order: DESC }
              filter: { frontmatter: { tags: { in: "Featured" } } }
              

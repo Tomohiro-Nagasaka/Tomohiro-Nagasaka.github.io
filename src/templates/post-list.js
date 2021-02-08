@@ -77,6 +77,7 @@ const PostList = (props) => {
     )
 }
 
+//filter: { frontmatter: { published: { eq: true } } }
 export const listQuery = graphql`
          query paginateQuery($skip: Int!, $limit: Int!) {
            site {
@@ -96,7 +97,7 @@ export const listQuery = graphql`
              limit: $limit
              skip: $skip
              sort: { fields: [frontmatter___date], order: DESC }
-             filter: { frontmatter: { published: { eq: true } } }
+             filter: { frontmatter: { tags: { nin: "Featured" } } }
            ) {
              totalCount
              edges {
