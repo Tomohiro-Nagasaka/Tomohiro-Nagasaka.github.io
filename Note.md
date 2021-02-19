@@ -37,3 +37,9 @@ Clear npm cache npm cache clean --force
 Re-install packages by running `npm install'
 Try again to run gatsby develop on your terminal/cmd. Good luck and happy coding again 👏
 
+# Commands
+
+npm run deploy
+gatsby develop
+
+use static folder for assets like audio/video
